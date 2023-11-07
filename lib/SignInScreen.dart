@@ -170,11 +170,10 @@ class SignInScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      // Navigasi ke laman "Sign In"
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) =>
-                              SignUpScreen(), // Ganti dengan laman "Sign In" yang sesuai
+                              SignUpScreen(),
                         ),
                       );
                     },

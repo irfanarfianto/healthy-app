@@ -192,9 +192,8 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFF5F48E6),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 15,
-                            vertical: 12), // Atur padding sesuai kebutuhan Anda
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -216,11 +215,9 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          // Navigasi ke laman "Sign In"
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  SignInScreen(), // Ganti dengan laman "Sign In" yang sesuai
+                              builder: (context) => SignInScreen(),
                             ),
                           );
                         },

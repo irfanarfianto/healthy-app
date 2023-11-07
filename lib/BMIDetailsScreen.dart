@@ -24,7 +24,6 @@ class _BMIDetailsScreenState extends State<BMIDetailsScreen> {
     String bmiCategory;
 
     if (bmi.isNaN) {
-      var resultCategory = 'Masukkan data yang valid';
       resultColor = Colors.red;
     } else {
       if (bmi < 18.5) {
