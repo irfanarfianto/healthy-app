@@ -3,23 +3,12 @@ import 'BMIDetailsScreen.dart';
 import 'EnergiBasalScreen.dart';
 import 'EnergiExpenditureScreen.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: BMICalculatorScreen(),
-    routes: {
-      '/bmi': (context) => BMIDetailsScreen(),
-      '/energi_basal': (context) => EnergiBasalScreen(),
-      '/energi_expenditure': (context) => EnergiExpenditureScreen(),
-    },
-  ));
-}
-
 class BMICalculatorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kalkulator BMI'),
+        title: Text('Halaman Menu'),
       ),
       body: DefaultTextStyle(
         style: TextStyle(fontFamily: 'Manrope'),
@@ -77,9 +66,9 @@ class BMICalculatorScreen extends StatelessWidget {
                       'Ketahui status gizimu melalui perbandingan berat badan dan tinggi badan',
                   actionText: 'Cek Sekarang',
                   backgroundColor: Color(0xFFD7D0FF),
-                  onPressed: () {
-                    // Navigasi ke layar baru saat card pertama diklik
-                    Navigator.pushNamed(context, '/bmi');
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(_createRoute(BMIDetailsScreen()));
                   },
                   height: 150,
                 ),
@@ -90,9 +79,9 @@ class BMICalculatorScreen extends StatelessWidget {
                       'Ketahui kebutuhan energi yang dibutuhkan tubuhmu untuk menjalankan fungsi fisiologis tubuh',
                   actionText: 'Cek Sekarang',
                   backgroundColor: Color(0xFFF4C2C2),
-                  onPressed: () {
-                    // Navigasi ke layar baru saat card kedua diklik
-                    Navigator.pushNamed(context, '/energi_basal');
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(_createRoute(EnergiBasalScreen()));
                   },
                   height: 150,
                 ),
@@ -103,9 +92,9 @@ class BMICalculatorScreen extends StatelessWidget {
                       'Ketahui kebutuhan energi yang dibutuhkan tubuhmu untuk mempertahankan kehidupan',
                   actionText: 'Cek Sekarang',
                   backgroundColor: Color(0xFFC7F4C2),
-                  onPressed: () {
-                    // Navigasi ke layar baru saat card ketiga diklik
-                    Navigator.pushNamed(context, '/energi_expenditure');
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(_createRoute(EnergiExpenditureScreen()));
                   },
                   height: 150,
                 ),
@@ -127,7 +116,7 @@ class CardWidget extends StatelessWidget {
   final String title;
   final String description;
   final String actionText;
-  final VoidCallback onPressed;
+  final VoidCallback onTap;
   final Color backgroundColor;
   final double height;
   final EdgeInsetsGeometry padding;
@@ -136,7 +125,7 @@ class CardWidget extends StatelessWidget {
     required this.title,
     required this.description,
     required this.actionText,
-    required this.onPressed,
+    required this.onTap,
     required this.backgroundColor,
     required this.height,
     this.padding = const EdgeInsets.all(10.0),
@@ -177,7 +166,7 @@ class CardWidget extends StatelessWidget {
               ButtonBar(
                 children: <Widget>[
                   TextButton(
-                    onPressed: onPressed,
+                    onPressed: onTap,
                     style: TextButton.styleFrom(
                       primary: Color(0xFF5F48E6),
                     ),
@@ -191,4 +180,18 @@ class CardWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+PageRouteBuilder _createRoute(Widget page) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.easeInOut;
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      var offsetAnimation = animation.drive(tween);
+      return SlideTransition(position: offsetAnimation, child: child);
+    },
+  );
 }
