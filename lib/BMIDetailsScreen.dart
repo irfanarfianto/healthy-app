@@ -150,7 +150,7 @@ class _BMIDetailsScreenState extends State<BMIDetailsScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 8.0),
+                  SizedBox(height: 16.0),
                   Container(
                     height: 75,
                     width: 378,
@@ -179,7 +179,7 @@ class _BMIDetailsScreenState extends State<BMIDetailsScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 8.0),
+                  SizedBox(height: 16.0),
                   Container(
                     height: 75,
                     width: 378,
@@ -226,28 +226,43 @@ class _BMIDetailsScreenState extends State<BMIDetailsScreen> {
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: Text('OK'),
+                                  child: Text('OK',
+                                      style: TextStyle(
+                                        color: Color(0xFF5F48E6),
+                                        fontWeight: FontWeight.w600,
+                                      )),
                                 ),
                               ],
                             );
                           },
                         );
                       },
-                      child: Text(
-                        'Lihat Hasil',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          height: 0,
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Lihat Hasil',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              height: 0,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                          ),
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                          ),
+                        ],
                       ),
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFF5F48E6),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 15,
-                            vertical: 12), // Atur padding sesuai kebutuhan Anda
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
